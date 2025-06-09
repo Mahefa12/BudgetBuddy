@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class DailyStats(
     @PrimaryKey
-    val date: String, // Format: YYYY-MM-DD
+    val date: String,
     
     val totalSpent: Double = 0.0,
     val totalSaved: Double = 0.0,

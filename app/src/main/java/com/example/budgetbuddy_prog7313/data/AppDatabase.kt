@@ -16,7 +16,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         MonthlyGoal::class,
         DailyStats::class
     ],
-    version = 12 // Incremented for new field
+    version = 12
 )
 abstract class AppDatabase : RoomDatabase() {
 

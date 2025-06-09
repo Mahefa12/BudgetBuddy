@@ -48,6 +48,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
+
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.outlined.AccountBalanceWallet
@@ -59,18 +60,24 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         installSplashScreen().apply {
             setKeepOnScreenCondition { false }
         }
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
             BudgetBuddy_Prog7313Theme {
                 val navController = rememberNavController()
+
                 NavHost(
                     navController = navController,
                     startDestination = "login"
                 ) {
+                    // Login screen route
                     composable("login") {
                         LoginScreen { username ->
                             navController.navigate("main/$username") {
@@ -78,9 +85,12 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     }
+
+                    // Main screen
                     composable("main/{username}") { backStackEntry ->
                         val username = backStackEntry.arguments?.getString("username") ?: ""
                         val mainNavController = rememberNavController()
+
                         Scaffold(
                             bottomBar = { BottomNavBar(mainNavController) }
                         ) { innerPadding ->
@@ -103,22 +113,28 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
+
+
 @Composable
 fun LoginScreen(onLoginSuccess: (String) -> Unit) {
     val context = LocalContext.current
     val db = remember { AppDatabase.getDatabase(context) }
     val userDao = db.userDao()
     val scope = rememberCoroutineScope()
+
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var error by remember { mutableStateOf<String?>(null) }
     var showCreateDialog by remember { mutableStateOf(false) }
+
     LaunchedEffect(Unit) {
         val existing = userDao.login("1", "1")
         if (existing == null) {
             userDao.insert(User("1", "1"))
         }
     }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -127,12 +143,13 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = R.drawable.load),
+            painter = painterResource(id = R.drawable.square),
             contentDescription = "App logo",
             modifier = Modifier
                 .size(120.dp)
                 .padding(bottom = 16.dp)
         )
+
         OutlinedTextField(
             value = username,
             onValueChange = { username = it },
@@ -146,7 +163,9 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit) {
                 .width(280.dp)
                 .padding(vertical = 8.dp)
         )
+
         Spacer(modifier = Modifier.height(10.dp))
+
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
@@ -160,7 +179,9 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit) {
                 .width(280.dp)
                 .padding(vertical = 8.dp)
         )
+
         Spacer(modifier = Modifier.height(20.dp))
+
         Button(
             onClick = {
                 scope.launch {
@@ -187,14 +208,17 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit) {
         ) {
             Text("LOGIN")
         }
+
         TextButton(onClick = { showCreateDialog = true }) {
             Text("Create New Account")
         }
+
         error?.let {
             Spacer(modifier = Modifier.height(10.dp))
             Text(it, color = MaterialTheme.colorScheme.error)
         }
     }
+
     if (showCreateDialog) {
         CreateUserDialog(
             onDismiss = { showCreateDialog = false },
@@ -202,6 +226,11 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit) {
         )
     }
 }
+
+
+
+
+
 
 @Composable
 fun BottomNavBar(navController: NavController) {
@@ -229,6 +258,14 @@ fun BottomNavBar(navController: NavController) {
     }
 }
 
+
+
+
+
+
+
+
+
 @Composable
 fun currentRoute(navController: NavController): String? {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -246,6 +283,9 @@ sealed class Screen(
     object Analytics : Screen("analytics", "Analytics", Icons.Outlined.BarChart)
     object Challenges : Screen("challenges", "Challenges", Icons.Default.Star)
 }
+
+
+
 
 @Preview(showBackground = true)
 @Composable

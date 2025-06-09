@@ -22,7 +22,6 @@ fun DropdownMenuBox(
 ) {
     var expanded by remember { mutableStateOf(false) }
 
-    // We use the selected value from the caller instead of maintaining internal state
     Box {
         OutlinedTextField(
             value = selected,
@@ -42,7 +41,7 @@ fun DropdownMenuBox(
                 DropdownMenuItem(
                     text = { Text(item) },
                     onClick = {
-                        onSelected(item) // we just pass it back
+                        onSelected(item)
                         expanded = false
                     }
                 )

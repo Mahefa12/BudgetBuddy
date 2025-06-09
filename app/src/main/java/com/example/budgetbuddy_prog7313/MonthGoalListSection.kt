@@ -33,7 +33,6 @@ fun MonthGoalListSection(title: String, isFuture: Boolean) {
     var goalList by remember { mutableStateOf<List<MonthlyGoal>>(emptyList()) }
     val currentMonth = YearMonth.now()
 
-    // Listen for all goals and filter them by whether they are future or past
     LaunchedEffect(Unit) {
         goalDao.getAllGoals().collectLatest { allGoals ->
             goalList = allGoals.filter {
@@ -45,7 +44,6 @@ fun MonthGoalListSection(title: String, isFuture: Boolean) {
 
     Column(modifier = Modifier.fillMaxWidth()) {
 
-        // Section header that can expand or collapse
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -65,7 +63,6 @@ fun MonthGoalListSection(title: String, isFuture: Boolean) {
 
                 var totalSpent by remember(goal.monthId) { mutableStateOf<Float?>(null) }
 
-                // For each goal, calculate how much was spent in that month
                 LaunchedEffect(goal.monthId) {
                     val start = "${goal.monthId}-01"
                     val end = "${goal.monthId}-31" // assumes 31-day month

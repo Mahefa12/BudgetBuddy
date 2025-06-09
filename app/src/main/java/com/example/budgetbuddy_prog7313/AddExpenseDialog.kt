@@ -22,6 +22,8 @@ import androidx.core.content.FileProvider
 import androidx.activity.compose.rememberLauncherForActivityResult
 import java.io.File
 import androidx.compose.ui.platform.LocalContext
+import java.text.SimpleDateFormat
+import java.util.Date
 
 
 
@@ -65,15 +67,21 @@ fun AddExpenseDialog(onDismiss: () -> Unit) {
             TextButton(onClick = {
                 if (name.isNotBlank() && amount.isNotBlank()) {
                     coroutineScope.launch(Dispatchers.IO) {
+                        val now = Date()
+                        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+                        val timeFormat = SimpleDateFormat("HH:mm")
+                        val finalDate = if (date.isBlank()) dateFormat.format(now) else date
+                        val finalStartTime = if (startTime.isBlank()) timeFormat.format(now) else startTime
+                        val finalEndTime = if (endTime.isBlank()) timeFormat.format(now) else endTime
                         expenseDao.insert(
                             ExpenseEntity(
                                 name = name,
                                 category = category,
                                 description = description,
                                 amount = amount.toDoubleOrNull() ?: 0.0,
-                                date = date,
-                                startTime = startTime,
-                                endTime = endTime,
+                                date = finalDate,
+                                startTime = finalStartTime,
+                                endTime = finalEndTime,
                                 photoUri = imageUri?.toString()
                             )
                         )

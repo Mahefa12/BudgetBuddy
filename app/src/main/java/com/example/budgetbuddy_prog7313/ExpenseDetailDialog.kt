@@ -31,7 +31,6 @@ fun ExpenseDetailDialog(
 
         text = {
             Column {
-                // If a photo was attached to the expense, display it at the top
                 if (!expense.photoUri.isNullOrBlank()) {
                     AsyncImage(
                         model = expense.photoUri,

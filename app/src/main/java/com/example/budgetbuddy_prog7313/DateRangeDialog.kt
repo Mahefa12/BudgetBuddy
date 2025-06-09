@@ -21,7 +21,6 @@ fun DateRangeDialog(
     val openFrom = remember { mutableStateOf(false) }
     val openTo = remember { mutableStateOf(false) }
 
-    // Show the "from" date picker dialog when openFrom is true
     if (openFrom.value) {
         val cal = Calendar.getInstance()
         DatePickerDialog(
@@ -36,7 +35,6 @@ fun DateRangeDialog(
         ).show()
     }
 
-    // Show the "to" date picker dialog when openTo is true
     if (openTo.value) {
         val cal = Calendar.getInstance()
         DatePickerDialog(

@@ -179,7 +179,6 @@ fun ExpenseItem(
                 .padding(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Image (if available)
             if (!expense.photoUri.isNullOrBlank()) {
                 AsyncImage(
                     model = expense.photoUri,
@@ -232,7 +231,6 @@ fun CategoryListScreen() {
 
     var editingCategory by remember { mutableStateOf<Category?>(null) }
 
-    // Loads totals either for a date range or all time
     fun loadTotals() {
         scope.launch {
             val flow = if (fromDate.isNotBlank() && toDate.isNotBlank()) {
@@ -299,7 +297,6 @@ fun CategoryListScreen() {
         }
     }
 
-    // Show the date filter dialog when triggered
     if (showDateDialog) {
         DateRangeDialog(
             onConfirm = { from, to ->
@@ -312,7 +309,6 @@ fun CategoryListScreen() {
         )
     }
 
-    // Show the edit dialog when a category is tapped
     editingCategory?.let { category ->
         EditCategoryDialog(
             category = category,

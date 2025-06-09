@@ -38,8 +38,8 @@ class BudgetViewModel(application: Application) : AndroidViewModel(application) 
             _isLoading.value = true
             try {
                 _categoryTotals.value = expenseDao.getCategoryTotalsBetweenDates(
-                    startDate.format(DateTimeFormatter.ISO_DATE_TIME),
-                    endDate.format(DateTimeFormatter.ISO_DATE_TIME)
+                    DateUtils.formatDate(startDate),
+                    DateUtils.formatDate(endDate)
                 ).first()
 
                 val monthId = startDate.format(DateTimeFormatter.ofPattern("yyyy-MM"))

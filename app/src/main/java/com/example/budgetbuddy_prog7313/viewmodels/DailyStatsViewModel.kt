@@ -84,7 +84,7 @@ class DailyStatsViewModel(application: Application) : AndroidViewModel(applicati
                 )
                 dailyStatsDao.update(updatedStats)
                 if (progress >= 1.0f) {
-                    awardXP(50f) // Award XP for completing daily challenge
+                    awardXP(50f)
                 }
             }
         }

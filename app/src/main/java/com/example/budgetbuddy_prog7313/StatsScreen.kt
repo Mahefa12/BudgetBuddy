@@ -92,7 +92,7 @@ fun StatsScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // --- Daily Challenge Section ---
+        // Daily Challenge Section
         item {
             Card(
                 modifier = Modifier.fillMaxWidth(),

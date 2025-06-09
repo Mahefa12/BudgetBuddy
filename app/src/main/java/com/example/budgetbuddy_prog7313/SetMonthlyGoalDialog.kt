@@ -20,7 +20,6 @@ fun SetMonthlyGoalDialog(
         confirmButton = {
             TextButton(
                 onClick = {
-                    // Parse input text to float; if invalid, fallback to 0
                     val min = minText.toFloatOrNull() ?: 0f
                     val max = maxText.toFloatOrNull() ?: 0f
                     onSave(min, max)
@@ -40,7 +39,6 @@ fun SetMonthlyGoalDialog(
 
         text = {
             Column {
-                // User enters the minimum monthly goal
                 OutlinedTextField(
                     value = minText,
                     onValueChange = { minText = it },
@@ -50,7 +48,6 @@ fun SetMonthlyGoalDialog(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // User enters the maximum monthly goal
                 OutlinedTextField(
                     value = maxText,
                     onValueChange = { maxText = it },

@@ -28,7 +28,6 @@ fun CreateUserDialog(
 
         confirmButton = {
             TextButton(onClick = {
-                // I added .trim() so users can't submit spaces by accident
                 if (username.trim().isNotEmpty() && password.trim().isNotEmpty()) {
                     scope.launch {
                         userDao.insert(User(username = username.trim(), password = password.trim()))

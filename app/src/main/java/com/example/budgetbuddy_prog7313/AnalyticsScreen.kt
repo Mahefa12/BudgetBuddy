@@ -200,7 +200,7 @@ fun AnalyticsScreen(
                                 
                                 Spacer(modifier = Modifier.height(8.dp))
                                 
-                                // Status text
+                                // Status
                                 Text(
                                     text = when {
                                         totalSpent < goal.minAmount -> 
