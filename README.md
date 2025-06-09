@@ -1,6 +1,6 @@
 ## Installation
 1. Clone the repository by pasting the following URL in Browser:
-   
+   https://github.com/Mahefa12/BudgetBuddy.git
 
 3. Download Android studio if you haven’t already
 
