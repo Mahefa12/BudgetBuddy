@@ -2,7 +2,6 @@
 1. Clone the repository by pasting the following URL in Browser:
    https://github.com/Mahefa12/BudgetBuddy.git
 
-3. Download Android studio if you haven’t already
 
 2. Open in Android Studio
    - Launch Android Studio
@@ -78,5 +77,5 @@ Your Completed goals, Custom Goals, Future Months, Previous Months, as well as y
 ### AI suggestions
 1. On the Home Screen, Our AI will pop up messages if it thinks you overspent on a certain category and should slow down.
 
-
+You can view a video of this app on: https://youtube.com/shorts/N4l5YCFFhYM?si=npJF4lk84ObSLsBV
 Thank you for choosing Budget Buddy
